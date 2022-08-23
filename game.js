@@ -13,10 +13,17 @@ window.addEventListener('resize', setCanvasSize);
 
 function startGame(){
 
+
+    const map = maps[2];
+    const mapRows = map.trim().split('\n');
+    const mapRowCols = mapRows.map(c => c.trim().split(''));
     game.font = elementSize+'px Verdana';
     game.textAlign = 'end';
-    for (let i = 1; i <= 10; i++) {
-        game.fillText(emojis['X'], elementSize*i,elementSize);
+    for (let c = 1; c <= 10; c++) {
+        for(let i = 1;i <= 10;i++){
+            game.fillText(emojis[mapRowCols[c-1][i-1]], elementSize*i,elementSize*c);
+        }
+        //game.fillText(emojis['X'], elementSize*i,elementSize);
     }
 }
 function setCanvasSize(){
