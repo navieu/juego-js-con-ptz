@@ -19,12 +19,25 @@ function startGame(){
     const mapRowCols = mapRows.map(c => c.trim().split(''));
     game.font = elementSize+'px Verdana';
     game.textAlign = 'end';
-    for (let c = 1; c <= 10; c++) {
-        for(let i = 1;i <= 10;i++){
-            game.fillText(emojis[mapRowCols[c-1][i-1]], elementSize*i,elementSize*c);
-        }
-        //game.fillText(emojis['X'], elementSize*i,elementSize);
-    }
+
+    // en el foreach tambien podemos saber el indice en el que esta 
+    // solo tenemos que dar una variable como se muestra
+    mapRowCols.forEach((row, rowIndex) => {
+        row.forEach((col, colIndex) => {
+            const emoji = emojis[col];
+            const posX = elementSize*(colIndex+1);
+            const posY = elementSize*(rowIndex+1);
+            game.fillText(emoji,posX,posY);
+        });
+    });
+
+
+    // for (let c = 1; c <= 10; c++) {
+    //     for(let i = 1;i <= 10;i++){
+    //         game.fillText(emojis[mapRowCols[c-1][i-1]], elementSize*i,elementSize*c);
+    //     }
+    //     game.fillText(emojis['X'], elementSize*i,elementSize);
+    // }
 }
 function setCanvasSize(){
 
